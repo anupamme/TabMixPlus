@@ -53,7 +53,7 @@ function resolveBinPath(binName) {
   const pkgJsonPath = require.resolve(`${TOOL_PACKAGES[binName]}/package.json`);
   const {bin} = JSON.parse(fs.readFileSync(pkgJsonPath, "utf8"));
   const relPath = typeof bin === "string" ? bin : bin[binName];
-  return path.join(path.dirname(pkgJsonPath), relPath);
+  return path.resolve(path.dirname(pkgJsonPath), relPath);
 }
 
 function isNodeScript(binPath) {
